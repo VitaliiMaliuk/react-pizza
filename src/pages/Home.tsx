@@ -1,20 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import {
-  selectFilter,
-  setCategoryId,
-  setCurrentPage,
-} from "../redux/slices/filterSlice";
-
-import { fetchPizzas, selectPizzaData } from "../redux/slices/pizzaSlice";
-
 import Categories from "../components/Categories";
 import SortPopup from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
+
 import { useAppDispatch } from "../redux/store";
+import { selectFilter } from "../redux/filter/selectors";
+import { selectPizzaData } from "../redux/pizza/selectors";
+import { setCategoryId, setCurrentPage } from "../redux/filter/slice";
+import { fetchPizzas } from "../redux/pizza/asuncActions";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -94,13 +91,13 @@ const Home: React.FC = () => {
     <Skeleton key={index} />
   ));
 
-  const pizzas = items.map((obj: any) => <PizzaBlock {...obj} key={obj.id}/>);
+  const pizzas = items.map((obj: any) => <PizzaBlock {...obj} key={obj.id} />);
 
   return (
     <div className="container">
       <div className="content__top">
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
-        <SortPopup value={sort}/>
+        <SortPopup value={sort} />
       </div>
       <h2 className="content__title">All Pizzas</h2>
 
