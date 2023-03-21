@@ -1,28 +1,23 @@
 import React from "react";
-import qs from "qs";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import {
   selectFilter,
   setCategoryId,
   setCurrentPage,
-  setFilters,
 } from "../redux/slices/filterSlice";
 
 import { fetchPizzas, selectPizzaData } from "../redux/slices/pizzaSlice";
 
 import Categories from "../components/Categories";
-import Sort from "../components/Sort";
+import SortPopup from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
 import { useAppDispatch } from "../redux/store";
 
 const Home: React.FC = () => {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isMounted = React.useRef(false);
 
   const { categoryId, sort, currentPage, searchValue } =
     useSelector(selectFilter);
@@ -99,13 +94,13 @@ const Home: React.FC = () => {
     <Skeleton key={index} />
   ));
 
-  const pizzas = items.map((obj: any) => <PizzaBlock {...obj} />);
+  const pizzas = items.map((obj: any) => <PizzaBlock {...obj} key={obj.id}/>);
 
   return (
     <div className="container">
       <div className="content__top">
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
-        <Sort />
+        <SortPopup value={sort}/>
       </div>
       <h2 className="content__title">All Pizzas</h2>
 
