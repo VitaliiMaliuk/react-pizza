@@ -12,7 +12,15 @@ type CartItemProps = {
   type: string;
 };
 
-const CartItemBlock: React.FC<CartItemProps> = ({ id, title, size, price, count, imageUrl, type }) => {
+const CartItemBlock: React.FC<CartItemProps> = ({
+  id,
+  title,
+  size,
+  price,
+  count,
+  imageUrl,
+  type,
+}) => {
   const dispatch = useDispatch();
 
   const onClickPlus = () => {

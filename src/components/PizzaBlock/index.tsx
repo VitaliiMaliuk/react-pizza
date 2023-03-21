@@ -14,6 +14,7 @@ type PizzaBlockProps = {
   imageUrl: string;
   sizes: number[];
   types: number[];
+  rating: number;
 };
 
 const PizzaBlock: React.FC<PizzaBlockProps> = ({

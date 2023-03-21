@@ -46,42 +46,6 @@ const Home: React.FC = () => {
     window.scrollTo(0, 0);
   };
 
-  //if you changed the parameters and it was the first render
-  // React.useEffect(() => {
-  //   if (isMounted.current) {
-  //     const params = {
-  //       sortProperty: sort.sortProperty,
-  //       categoryId: categoryId > 0 ? categoryId : null,
-  //       currentPage,
-  //     };
-  //     const quaryString = qs.stringify(params, { skipNulls: true });
-  //     navigate(`?${quaryString}`);
-  //   }
-  //   if (!window.location.search) {
-  //     dispatch(fetchPizzas({} as SearchPizzaParams));
-  //   }
-  // }, [categoryId, sort.sortProperty, searchValue, currentPage]);
-
-  //if was first render than check URL-params and save them in redux
-  // React.useEffect(() => {
-  //   if (window.location.search) {
-  //     const params = qs.parse(
-  //       window.location.search.substring(1)
-  //     ) as unknown as SearchPizzaParams;
-  //     const sort = sortList.find((obj) => obj.sortProperty === params.sortBy);
-
-  //     dispatch(
-  //       setFilters({
-  //         searchValue: params.search,
-  //         categoryId: Number(params.category),
-  //         currentPage: Number(params.currentPage),
-  //         sort: sort || sortList[0],
-  //       })
-  //     );
-  //     isMounted.current = true;
-  //   }
-  // }, []);
-
   //if there was a first render, then we request pizzas
   React.useEffect(() => {
     getPizzas();
